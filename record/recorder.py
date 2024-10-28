@@ -1,8 +1,3 @@
-
-## 녹음프로그램 GUI
-## DB 서버 상태를 출력해주는 코드를 포함한, 시험용 코드 (24.06.01 추가)
-## 작동 확인함
-
 import sounddevice as sd
 import soundfile as sf
 from tkinter import *
@@ -18,6 +13,7 @@ import mysql.connector
 from mysql.connector import Error
 import os
 from dotenv import load_dotenv
+import certifi
 
 class RecorderApp:
     def __init__(self, master):
@@ -32,16 +28,23 @@ class RecorderApp:
         self.subtype = 'MPEG_LAYER_III'
         master.geometry("886x491")
         self.create_widgets()
-        master.bind('<Control-KeyPress>', self.start_recording_key)
-        master.bind('<Alt-KeyPress>', self.stop_recording_key)
+        # master.bind('<Control-KeyPress>', self.start_recording_key)
+        # master.bind('<Alt-KeyPress>', self.stop_recording_key)
 
         load_dotenv('../.env')
         self.update_db_status()
+        self.update_time()  # 현재 시간 업데이트 시작
 
     def confirm(self):  # 공항코드 확인 누르면 행동
         in_text = self.entry_1.get()
-        self.atc_code = in_text
-        print(in_text)
+        if in_text == "":
+            messagebox.showwarning("Callsign Confirm", "호출부호를 입력해주세요.")
+            return
+        else:
+            self.atc_code = in_text
+            print(in_text)
+            msg = "호출부호가 " + in_text + "로 설정되었습니다."
+            messagebox.showwarning("Callsign Confirm", msg)
 
     def start_recording_key(self, event):
         self.start_recording()
@@ -59,6 +62,8 @@ class RecorderApp:
                 threading.Thread(target=self.record).start()
                 self.button_1.config(state=tk.DISABLED)
                 self.button_3.config(state=tk.NORMAL)
+                # 녹음 시작 시 상태 텍스트를 변경하고 빨간색으로 설정
+                self.status_label.config(text="녹음 중..", fg="red")
 
     def stop_recording(self):
         if self.recording:
@@ -66,14 +71,26 @@ class RecorderApp:
             threading.Thread(target=self.ser_up).start()
             self.button_1.config(state=tk.NORMAL)
             self.button_3.config(state=tk.DISABLED)
+            # 녹음 정지 시 상태 텍스트를 녹음준비로 변경하고 기본 색상으로 설정
+            self.status_label.config(text="녹음준비", fg="black")
 
     def ser_up(self):
         try:
-            url = "http://kyunsan.iptime.org:10100/upload"
+            print("start Upload... Filename : " + self.filename)
+            url = "https://home.kyunsan.com:10100/upload"
             with open(self.filename, 'rb') as f:
                 files = {'file': f}
-                response = requests.post(url, files=files)
-                print(response.text)  # 추가: 응답 결과 출력
+                response = requests.post(url, files=files, verify=certifi.where())
+                print(response.text + "filename : " + self.filename)  # 추가: 응답 결과 출력
+
+            # 업로드가 성공적으로 완료되면 현재 시간을 업데이트
+            if response.status_code == 200:
+                now = datetime.now()
+                timestamp = now.strftime("%Y/%m/%d %H:%M:%S")
+                self.recent_upload_label.config(text=timestamp)
+            else:
+                print("Upload Failed filename : " + self.filename)
+
         except Exception as e:
             print(e)
 
@@ -117,6 +134,12 @@ class RecorderApp:
             self.db_status_label.config(text=db_server_status, fg="red")
 
         self.master.after(5000, self.check_db_connection)  # 5초마다 상태를 확인하도록 설정
+
+    def update_time(self):
+        now = datetime.now()
+        timestamp = now.strftime("%H:%M:%S")
+        self.time_label.config(text=timestamp)
+        self.master.after(1000, self.update_time)  # 1초마다 시간 업데이트
 
     def create_widgets(self):
         OUTPUT_PATH = Path(__file__).parent
@@ -179,21 +202,49 @@ class RecorderApp:
             bg="#359EE9"
         )
         self.db_status_label.place(x=172.0, y=449.0)
+        self.canvas.create_text(
+            643.0,
+            471.0,
+            anchor="nw",
+            text="Recent Upload : ",
+            fill="#000000",
+            font=("NanumGothicExtraBold", 13 * -1)
+        )
+
+        # Recent Upload 시간과 날짜를 업데이트할 레이블 생성
+        self.recent_upload_label = Label(
+            self.master,
+            text="0000/00/00 00:00:00",
+            fg="#000000",
+            font=("NanumGothicExtraBold", 13 * -1),
+            bg="#FFFFFF"
+        )
+        self.recent_upload_label.place(x=743.0, y=465.9)
 
         self.canvas.create_text(
-            426.0,
+            440.0,
             145.0,
             anchor="nw",
-            text="호출코드 (ICAO Code 4자리)",
+            text="호출부호 (Callsign)",
             fill="#000000",
             font=("NanumGothicExtraBold", 24 * -1)
         )
+
+        # 녹음 준비 상태 레이블 생성
+        self.status_label = Label(
+            self.master,
+            text="녹음준비",
+            fg="black",
+            font=("NanumGothicExtraBold", 15 * -1),
+            bg="#FFFFFF"
+        )
+        self.status_label.place(x=695.0, y=155.0)
 
         self.canvas.create_text(
             53.0,
             226.0,
             anchor="nw",
-            text="1. 호출부호를 입력한다.\n\n2. 녹음키를 누른 후 녹음을 진행한다\n\n3. 녹음이 끝났으면, 정지버튼을 누른다.",
+            text="1. Callsign을 입력한다.\n\n*관제소 - ICAO Code, 항공기 - Callsign\n\n2. 녹음키를 누른 후 녹음을 진행한다\n\n3. 녹음이 끝났으면, 정지버튼을 누른다.",
             fill="#FCFCFC",
             font=("NanumGothic", 18 * -1)
         )
@@ -231,11 +282,22 @@ class RecorderApp:
         self.button_3 = Button(self.master, image=self.button_image_3, borderwidth=0, highlightthickness=0, command=self.stop_recording, relief="flat")
         self.button_3.place(x=660.0, y=265.0, width=141.0, height=45.0)
 
-        # self.master.resizable(False, False)
+        self.image_image_2 = PhotoImage(file=relative_to_assets("image_1.png"))
+        image_2 = self.canvas.create_image(201.0, 71.0, image=self.image_image_2)
+
+        # 현재 시간을 표시할 레이블 추가
+        self.time_label = Label(
+            self.master,
+            text="00:00:00",
+            fg="#FFFFFF",
+            font=("NanumGothicExtraBold", 60 * -1),
+            bg="#369EEA"
+        )
+        self.time_label.place(x=70.0, y=380.0)
 
     def update_db_status(self):
         self.check_db_connection()
-        self.master.after(5000, self.update_db_status)  # 5초마다 상태를 확인하도록 설정
+        self.master.after(5000, self.update_db_status)  # 5초마다 상태 확인함
 
 if __name__ == "__main__":
     root = tk.Tk()
