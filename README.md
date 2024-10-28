@@ -7,8 +7,6 @@
 Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)의 교신내용을 추가로 Fine-Tuning(미세조정)하여 만든 모델을 사용합니다.
 해당 모델을 이용하여 항공교통관제의 교신내용을 Speech To Text하여, DB에 저장하고 웹 상에서 열람하도록 하는 기능을 제공합니다.
 
-웹 페이지 코드는 보안상의 이유로 공개하지 않음.(DB 접속 정보 및 외부 API키) 
-
 ## 웹페이지
 * https://home.kyunsan.com:3000/
 
