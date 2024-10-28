@@ -1,4 +1,5 @@
-# Whsiper-ATC
+# Whsi![Logo(White)](https://github.com/user-attachments/assets/40a6aa0c-83ae-4503-a9bf-16536712f9f6)
+per-ATC
 2024년 창원대학교 정보통신공학과 캡스톤디자인(졸업작품) - 음성인식을 이용한 항공교통관제(ATC) 보조시스템 (김동균, 손승광)
 
 ## 소개
