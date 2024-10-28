@@ -2,15 +2,27 @@
 2024년 창원대학교 정보통신공학과 캡스톤디자인(졸업작품) - 음성인식을 이용한 항공교통관제(ATC) 보조시스템 (김동균, 손승광)
 
 ## 소개
-Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)의 데이터셋을 추가로 Fine-Tuning(미세조정)하여 만든 모델을 사용합니다.
-해당 모델을 이용하여 항공교통관제의 교신내용을 Speech To Text하여, DB에 저장하고 웹 상에서 녹음, 열람하도록 하는 기능을 제공합니다.
+Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)의 교신내용을 추가로 Fine-Tuning(미세조정)하여 만든 모델을 사용합니다.
+해당 모델을 이용하여 항공교통관제의 교신내용을 Speech To Text하여, DB에 저장하고 웹 상에서 열람하도록 하는 기능을 제공합니다.
 
 웹 페이지 코드는 보안상의 이유로 공개하지 않음.(DB 접속 정보 및 외부 API키) 
 
 ## 웹페이지
-웹페이지는 아래 링크를 방문해주세요
 * https://home.kyunsan.com:3000/
 
+<메인>
+<img width="1902" alt="image" src="https://github.com/user-attachments/assets/e875aaf5-8764-4da9-81e6-613b25787bdc">
+
+<기록열람>
+<img width="2156" alt="image" src="https://github.com/user-attachments/assets/f60de4ab-2662-468d-8ed4-6b35920826a3">
+
+<통계>
+<img width="1919" alt="image" src="https://github.com/user-attachments/assets/94887105-10bb-48db-98c1-4483cef06e3d">
+
+<녹음>
+<img width="1937" alt="image" src="https://github.com/user-attachments/assets/b7dcac65-8b04-495d-b4e5-2f96225c6472">
+
+  
 ## 모델
 음성인식 모델은 아래 링크를 방문해주세요
 * san2003m/whisper-small-atc
