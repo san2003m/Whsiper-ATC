@@ -14,6 +14,7 @@ Using this model, it provides a function that allows you to speak to text commun
 
 ## 논문 (Paper)
 음성인식을 이용한 항공교통관제(ATC) 보조시스템 - Whisper-ATC : Air Traffic Control Assistance System Using Speech Recognition
+
 [Paper PDF](https://blog.kyunsan.com/wp-content/uploads/2024/12/2024-dongkyun-kim-whisper-atc-air-traffic-control-assistance-system-using-speech-recognition.pdf)
 
 ## 웹페이지 (Webpage)
