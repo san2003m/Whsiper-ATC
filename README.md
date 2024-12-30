@@ -2,11 +2,13 @@
 # Whsiper-ATC
 
 2024년 국립창원대학교 정보통신공학과 캡스톤디자인(졸업작품) - 음성인식을 이용한 항공교통관제(ATC) 보조시스템 (김동균, 손승광)
+
 Capstone Design (Graduation Work), Department of Information and Communication Engineering, Changwon National University, 2024 - Air Traffic Control (ATC) Auxiliary System using Voice Recognition (Dongkyun Kim, Seungkwang Son)
 
 ## 소개
 Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)의 교신내용을 추가로 Fine-Tuning(미세조정)하여 만든 모델을 사용합니다.
 해당 모델을 이용하여 항공교통관제의 교신내용을 Speech To Text하여, DB에 저장하고 웹 상에서 열람하도록 하는 기능을 제공합니다.
+
 Whisper-ATC uses the Whisper model developed by OPENAI, which is an additional Fine-Tuning model of Air Traffic Control (ATC) communications.
 Using this model, it provides a function that allows you to speak to text communication content of air traffic control, store it in the DB, and view it on the web.
 
