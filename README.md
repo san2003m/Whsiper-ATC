@@ -3,7 +3,7 @@
 
 2024년 국립창원대학교 정보통신공학과 캡스톤디자인(졸업작품) - 음성인식을 이용한 항공교통관제(ATC) 보조시스템 (김동균, 손승광)
 
-Capstone Design (Graduation Work), Department of Information and Communication Engineering, Changwon National University, 2024 - Air Traffic Control (ATC) Auxiliary System using Voice Recognition (Dongkyun Kim, Seungkwang Son)
+Capstone Design (Graduation Work), Department of Information and Communication Engineering, Changwon National University, 2024 - Air Traffic Control (ATC) Assistance System using Voice Recognition (Dongkyun Kim, Seungkwang Son)
 
 ## 소개
 Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)의 교신내용을 추가로 Fine-Tuning(미세조정)하여 만든 모델을 사용합니다.
