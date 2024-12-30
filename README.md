@@ -15,16 +15,16 @@ Using this model, it provides a function that allows you to speak to text commun
 ## 웹페이지
 * https://home.kyunsan.com:3000/ 
 
-<메인>
+<메인> <Main>
 <img width="1902" alt="image" src="https://github.com/user-attachments/assets/e875aaf5-8764-4da9-81e6-613b25787bdc">
 
-<기록열람>
+<기록열람> <Record>
 <img width="2156" alt="image" src="https://github.com/user-attachments/assets/f60de4ab-2662-468d-8ed4-6b35920826a3">
 
-<통계>
+<통계> <Statistics>
 <img width="1919" alt="image" src="https://github.com/user-attachments/assets/94887105-10bb-48db-98c1-4483cef06e3d">
 
-<녹음>
+<녹음> <Recording>
 <img width="1937" alt="image" src="https://github.com/user-attachments/assets/b7dcac65-8b04-495d-b4e5-2f96225c6472">
 
   
