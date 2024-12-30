@@ -12,7 +12,10 @@ Whisper-ATC은 OPENAI사가 개발한 Whisper 모델에 항공교통관제(ATC)�
 Whisper-ATC uses the Whisper model developed by OPENAI, which is an additional Fine-Tuning model of Air Traffic Control (ATC) communications.
 Using this model, it provides a function that allows you to speak to text communication content of air traffic control, store it in the DB, and view it on the web.
 
-## 웹페이지
+## 논문 (Paper)
+[논문(Paper) PDF](https://blog.kyunsan.com/wp-content/uploads/2024/12/2024-dongkyun-kim-whisper-atc-air-traffic-control-assistance-system-using-speech-recognition.pdf)
+
+## 웹페이지 (Webpage)
 * https://home.kyunsan.com:3000/ 
 
 <메인> <Main>
@@ -28,7 +31,7 @@ Using this model, it provides a function that allows you to speak to text commun
 <img width="1937" alt="image" src="https://github.com/user-attachments/assets/b7dcac65-8b04-495d-b4e5-2f96225c6472">
 
   
-## 모델
+## 모델 (Model)
 음성인식 모델은 아래 링크를 방문해주세요.
 For voice recognition models, please visit the link below.
 
